@@ -1,5 +1,5 @@
 {
-  "extends": "@tsconfig/node21/tsconfig.json",
+  "extends": "@tsconfig/node22/tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
@@ -25,5 +25,6 @@
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "types": ["vite/client", "chrome"],
   }
 }
