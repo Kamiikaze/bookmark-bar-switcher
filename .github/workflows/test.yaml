@@ -30,7 +30,7 @@ on: # yamllint disable-line rule:truthy
 jobs:
   test:
     name: Test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         browser: [Chrome, Opera]
@@ -42,17 +42,6 @@ jobs:
           node-version: ">=22.0.0"
       - name: Install
         run: npm ci
-      - name: Configure Chrome Sandbox
-        run: |
-         # Puppeteer downloads Chrome into the cache directory.
-         SANDBOX=$(find ~/.cache/puppeteer -name chrome-sandbox | head -n 1)
-         if [ -n "$SANDBOX" ]; then
-           echo "Found chrome-sandbox at $SANDBOX"
-           sudo chown root:root "$SANDBOX"
-           sudo chmod 4755 "$SANDBOX"
-         else
-           echo "chrome-sandbox not found, skipping configuration"
-         fi
       - name: Build
         run: npm run build
       - name: Security Audit
